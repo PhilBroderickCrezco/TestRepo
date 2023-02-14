@@ -23,9 +23,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -c Release
     - name: Publish
-      run: dotnet publish --no-build -o website
+      run: dotnet publish --no-build AzureDevOpsMigrationTest/AzureDevOpsMigrationTest.csproj -c Release -o website
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
