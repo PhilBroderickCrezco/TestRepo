@@ -34,6 +34,7 @@ jobs:
   buildMaster:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
+    needs: [buildBranch]
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
