@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - .github/workflows/build-publish.yml
-      - AzureDevOpsMigrationTest/*
+      - AzureDevOpsMigrationTest/**
 
 jobs:
   buildBranch:
