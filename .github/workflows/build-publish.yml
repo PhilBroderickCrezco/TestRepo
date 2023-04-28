@@ -53,3 +53,25 @@ jobs:
           name: website
           path: ${{env.DOTNET_ROOT}}/website/**
           if-no-files-found: error
+          
+  BuildFromEnv:
+    runs-on: ubuntu-latest
+    environment: Dev
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore -c Release
+      - name: Publish
+        run: dotnet publish --no-build AzureDevOpsMigrationTest/AzureDevOpsMigrationTest.csproj -c Release -o ${{env.DOTNET_ROOT}}/website
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: website
+          path: ${{env.DOTNET_ROOT}}/website/**
+          if-no-files-found: error
